@@ -1,0 +1,32 @@
+variables:
+  host: 127.0.0.1
+  interval: 30
+  color_down: "#ff0000"
+  color_up: "#00ff00"
+  color_refresh: "#ffff00"
+
+widgets:
+  - widget: exec
+    interval: ${interval}
+    retry: 0
+    silent: true
+    command: |
+        ping ${host} -c1 -w 1  > /dev/null
+        if [ $? -eq 0 ]; then
+          echo '[{"color": "${color_up}"}]'
+        else
+          echo '[{"color": "${color_down}"}]'
+          exit 1
+        fi
+    events:
+        - button: 1
+          output_format: auto
+          command: |
+            echo '[{"color": "${color_refresh}"}]'
+            sleep 0.5
+            ping ${host} -c1 -w 1  > /dev/null
+            if [ $? -eq 0 ]; then
+              echo '[{"color": "${color_up}"}]'
+            else
+              echo '[{"color": "${color_down}"}]'
+            fi

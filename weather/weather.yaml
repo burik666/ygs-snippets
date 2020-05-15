@@ -1,0 +1,16 @@
+variables:
+  interval: 600
+  apikey: ""
+  city: ""
+  units: "metric"
+widgets:
+  - widget: exec
+    interval: ${interval}
+    command: ./weather.py -apikey "${apikey}" -city "${city}" -units "${units}"
+    events:
+      - button: 1
+        command: xdg-open "https://openweathermap.org/?q=${city}"
+      - button: 3
+        output_format: json
+        command: ./weather.py -apikey "${apikey}" -city "${city}" -units "${units}"
+

@@ -1,0 +1,14 @@
+variables:
+  interval: 60
+widgets:
+  - widget: exec
+    command: ./check.py
+    interval: ${interval}
+    retry: 5
+    events:
+        - button: 1
+          command: xdg-open https://mail.google.com/mail/
+        - button: 3
+          command: ./check.py
+          output_format: json
+
