@@ -1,0 +1,18 @@
+variables:
+  interval: 60
+  feed: https://lorem-rss.herokuapp.com/feed
+widgets:
+  - widget: exec
+    interval: ${interval}
+    command: ./rss.py -feed "${feed}" -interval "${interval}"
+    events:
+      - button: 1
+        command: xdg-open "$I3__link"
+
+      - button: 5
+        output_format: json
+        command: ./rss.py -feed "${feed}" -next
+
+      - button: 4
+        output_format: json
+        command: ./rss.py -feed "${feed}" -prev
