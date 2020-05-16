@@ -1,0 +1,8 @@
+widgets:
+  - widget: static
+    blocks: >
+      [
+        {
+          "full_text": "hello world"
+        }
+      ]
