@@ -1,6 +1,7 @@
 variables:
   host: 127.0.0.1
   interval: 30
+  retry: 1
   color_down: "#ff0000"
   color_up: "#00ff00"
   color_refresh: "#ffff00"
@@ -8,7 +9,7 @@ variables:
 widgets:
   - widget: exec
     interval: ${interval}
-    retry: 0
+    retry: ${retry}
     silent: true
     command: |
         ping ${host} -c1 -w 1  > /dev/null
