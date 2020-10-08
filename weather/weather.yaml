@@ -6,6 +6,7 @@ variables:
 widgets:
   - widget: exec
     interval: ${interval}
+    silent: true
     command: ./weather.py -apikey "${apikey}" -city "${city}" -units "${units}"
     events:
       - button: 1
