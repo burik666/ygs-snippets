@@ -1,14 +1,20 @@
 variables:
   interval: 60
+  retry: 5
 widgets:
   - widget: exec
-    command: ./check.py
+    command: ./gmail.py
     interval: ${interval}
-    retry: 5
+    silent: true
+    retry: ${retry}
     events:
         - button: 1
+          command: ./menu.sh
+
+        - button: 2
           command: xdg-open https://mail.google.com/mail/
+
         - button: 3
-          command: ./check.py
+          command: ./gmail.py
           output_format: json
 

@@ -12,11 +12,6 @@ from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def main():
-    """Shows basic usage of the Gmail API.
-    Lists the user's Gmail labels.
-    """
-    """
-    """
     output = [
             {
                 "full_text": "\uf0e0" if not os.environ.get('I3_full_text') else os.environ.get('I3_full_text'),
@@ -25,8 +20,6 @@ def main():
             ]
     print(json.dumps(output))
     sys.stdout.flush()
-
-
 
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
@@ -51,11 +44,27 @@ def main():
 
     # Call the Gmail API
     results = service.users().messages().list(userId="me", q="in:INBOX is:unread").execute()
+
+    messages = []
+    if "messages" in results:
+        for msg in results["messages"]:
+            msg_res = service.users().messages().get(userId="me", id=msg["id"]).execute()
+            msg = {"id": msg["id"]}
+            for header in msg_res["payload"]["headers"]:
+                if header["name"] == "Subject":
+                    msg["subject"] = header["value"]
+                if header["name"] == "From":
+                    msg["from"] = header["value"]
+            messages.append(msg)
+
+
     count = results["resultSizeEstimate"]
     output = [
             {
                 "full_text": "\uf0e0" + ((" " + str(count)) if (count > 0) else ""),
                 "color": ("#ff0000" if (count > 0) else "#ffffff"),
+                "_count": count,
+                "_messages": json.dumps(messages),
                 }
             ]
 
