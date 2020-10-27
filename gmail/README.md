@@ -1,6 +1,7 @@
 # Gmail checker
 
 ## Requirements
+ - Python3
  - [jq](https://stedolan.github.io/jq/)
  - [rofi](https://github.com/davatorium/rofi)
 

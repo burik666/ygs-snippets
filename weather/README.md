@@ -1,6 +1,7 @@
 # Weather
 
 ## Requirements
+ - Python3
  - [Font Awesome](https://fontawesome.com)
 
 ## API Key

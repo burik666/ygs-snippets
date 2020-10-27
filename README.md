@@ -5,16 +5,17 @@ Collection of snippets for [YaGoStatus](https://github.com/burik666/yagostatus).
 
 ## Installation
 
-Clone this repository into the directory with yagostatus.yml.
+Clone this repository into the directory with `yagostatus.yml`.
 
-`~/.yagostatus` or `~/.config/i3` (or create new)
+    cd ~/.config/.yagostatus
+    git clone https://github.com/burik666/ygs-snippets.git
 
-`git clone https://github.com/burik666/ygs-snippets.git`
+## Usage
 
 Add snippets to the configuration file.
-For example:
+
 `yagostatus.yml`:
-```yml
+```yaml
   - widget: $ygs-snippets/helloworld.yaml
 ```
 
