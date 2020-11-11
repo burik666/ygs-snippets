@@ -1,0 +1,12 @@
+variables:
+  on: "●"
+  off: "○"
+  format: "%02d %04d %03d %04d %03d %04d"
+widgets:
+  - widget: exec
+    command: ./clock.sh
+    env:
+      - ON=${on}
+      - OFF=${off}
+      - FORMAT=${format}
+    interval: 1
