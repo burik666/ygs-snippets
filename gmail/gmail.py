@@ -12,10 +12,15 @@ from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def main():
+    icon = os.environ.get("ICON", "\uf0e0")
+    color_normal = os.environ.get("COLOR_NORMAL", "#ffffff")
+    color_unread = os.environ.get("COLOR_UNREAD", "#ff0000")
+    color_loading = os.environ.get("COLOR_LOADING", "#ffff00")
+
     output = [
             {
-                "full_text": "\uf0e0" if not os.environ.get('I3_full_text') else os.environ.get('I3_full_text'),
-                "color": "#ffff00",
+                "full_text": icon if not os.environ.get('I3_full_text') else os.environ.get('I3_full_text'),
+                "color": color_loading,
                 },
             ]
     print(json.dumps(output))
@@ -61,8 +66,8 @@ def main():
     count = results["resultSizeEstimate"]
     output = [
             {
-                "full_text": "\uf0e0" + ((" " + str(count)) if (count > 0) else ""),
-                "color": ("#ff0000" if (count > 0) else "#ffffff"),
+                "full_text": icon + ((" " + str(count)) if (count > 0) else ""),
+                "color": (color_unread if (count > 0) else color_normal),
                 "_count": count,
                 "_messages": json.dumps(messages),
                 }

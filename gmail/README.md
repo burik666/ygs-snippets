@@ -16,6 +16,15 @@ Save the file `credentials.json` to `ygs-snippets/gmail/` directory.
 - Middle-click to open gmail.com.
 - Right-click to refresh.
 
+## Variables
+Default values:
+- `interval: 60`
+- `retry: 5`
+- `icon: "\uf0e0"`
+- `color_normal: "#ffffff"`
+- `color_unread: "#ff0000"`
+- `color_loading: "#ffff00"`
+
 ## Example
 ```yml
   - widget: $ygs-snippets/gmail/gmail.yaml

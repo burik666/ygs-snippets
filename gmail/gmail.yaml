@@ -1,9 +1,18 @@
 variables:
   interval: 60
   retry: 5
+  icon: "\uf0e0"
+  color_normal: "#ffffff"
+  color_unread: "#ff0000"
+  color_loading: "#ffff00"
 widgets:
   - widget: exec
     command: ./gmail.py
+    env:
+      - ICON=${icon}
+      - COLOR_NORMAL=${color_normal}
+      - COLOR_UNREAD=${color_unread}
+      - COLOR_LOADING=${color_loading}
     interval: ${interval}
     silent: true
     retry: ${retry}
